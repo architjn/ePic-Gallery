@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 
 import com.architjn.epic.adapters.ImgsAdapter;
+import com.architjn.epic.utils.CacheImageLoader;
+import com.architjn.epic.utils.HidingScrollListener;
 import com.architjn.epic.utils.ImageItemDecoration;
 import com.architjn.epic.utils.items.Image;
 
@@ -23,6 +25,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView rv;
+    private int scrollD = -20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +36,16 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(getImageSize(), getImageSize());
         rv = (RecyclerView) findViewById(R.id.main_recyclerview);
         rv.setLayoutManager(new GridLayoutManager(this, 3));
-        rv.addItemDecoration(new ImageItemDecoration(8, getNumberOfImage()));
-        rv.setAdapter(new ImgsAdapter(this, imgList, layoutParams));
+        rv.addItemDecoration(new ImageItemDecoration(8, getNumberOfImage(),
+                (findViewById(R.id.main_toolbar)).getLayoutParams().height));
+        CacheImageLoader cil = new CacheImageLoader(this, imgList.size());
+        rv.setAdapter(new ImgsAdapter(this, imgList, layoutParams, cil));
+        rv.addOnScrollListener(new HidingScrollListener(this, (Toolbar) findViewById(R.id.main_toolbar)) {
+            @Override
+            public void onMoved(int distance) {
+                (findViewById(R.id.main_toolbar)).setTranslationY(-distance);
+            }
+        });
     }
 
     private int getImageSize() {

@@ -10,8 +10,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.architjn.epic.R;
+import com.architjn.epic.utils.CacheImageLoader;
 import com.architjn.epic.utils.items.Image;
+import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.util.List;
 
 public class ImgsAdapter extends RecyclerView.Adapter<ImgsAdapter.SimpleItemViewHolder> {
@@ -19,21 +22,26 @@ public class ImgsAdapter extends RecyclerView.Adapter<ImgsAdapter.SimpleItemView
     private final List<Image> items;
     private Context context;
     private LinearLayout.LayoutParams layoutParams;
+    private CacheImageLoader cacheImageLoader;
 
     public final static class SimpleItemViewHolder extends RecyclerView.ViewHolder {
         public ImageView gridImage;
+        private View view;
 
         public SimpleItemViewHolder(View view) {
             super(view);
-
+            this.view = view;
             gridImage = (ImageView) view.findViewById(R.id.item_imageview);
         }
     }
 
-    public ImgsAdapter(Context context, List<Image> items, LinearLayout.LayoutParams layoutParams) {
+    public ImgsAdapter(Context context, List<Image> items,
+                       LinearLayout.LayoutParams layoutParams,
+                       CacheImageLoader cil) {
         this.context = context;
         this.items = items;
         this.layoutParams = layoutParams;
+        this.cacheImageLoader = cil;
     }
 
     @Override
@@ -47,9 +55,23 @@ public class ImgsAdapter extends RecyclerView.Adapter<ImgsAdapter.SimpleItemView
 
     @Override
     public void onBindViewHolder(final SimpleItemViewHolder holder, final int position) {
-//        Picasso.with(context).load(items.get(position).getPath()).into(holder.gridImage);
+        String filePath = cacheImageLoader
+                .getImage(items.get(position).getPath(), layoutParams.width, layoutParams.height);
+        Picasso.with(context).load(Uri.fromFile(new File(filePath))).into(holder.gridImage);
         holder.gridImage.setLayoutParams(layoutParams);
-        holder.gridImage.setImageURI(Uri.parse(items.get(position).getPath()));
+        holder.gridImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        holder.gridImage.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+                return true;
+            }
+        });
     }
 
     @Override

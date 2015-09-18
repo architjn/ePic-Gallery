@@ -6,11 +6,12 @@ import android.view.View;
 
 public class ImageItemDecoration extends RecyclerView.ItemDecoration {
 
-    private int space, columns;
+    private int space, columns, height;
 
-    public ImageItemDecoration(int space, int columns) {
+    public ImageItemDecoration(int space, int columns, int height) {
         this.space = space;
         this.columns = columns;
+        this.height = height;
     }
 
     @Override
@@ -27,6 +28,8 @@ public class ImageItemDecoration extends RecyclerView.ItemDecoration {
 
         if (pos + 1 > columns)
             outRect.top = space;
+        else
+            outRect.top = height;
     }
 
 }
