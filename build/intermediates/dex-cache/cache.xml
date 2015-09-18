@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/architjn/AndroidStudioProjects/EPicGallery/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="39ae02ce40c3ac828abbf780ce0ff5d7a28b7d6a">
+        <dex dex="/Users/architjn/AndroidStudioProjects/EPicGallery/app/build/intermediates/pre-dexed/debug/classes-79bf6aa77a936f1fa0da915fa199828b2ff03cf8.jar" />
+    </item>
+    <item
+        jar="/Users/architjn/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/Users/architjn/AndroidStudioProjects/EPicGallery/app/build/intermediates/pre-dexed/debug/picasso-2.5.2-a2160a73389493cf67610654d3df3efaa3b92d9a.jar" />
+    </item>
+    <item
+        jar="/Users/architjn/AndroidStudioProjects/EPicGallery/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4356e230a981d1bbf047d848b91bc0d9b7c5bacc">
+        <dex dex="/Users/architjn/AndroidStudioProjects/EPicGallery/app/build/intermediates/pre-dexed/debug/classes-83cf3d054cdb6a8e3cb8d74fd8dd6957f9db369a.jar" />
+    </item>
+
+</items>
